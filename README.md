@@ -1,53 +1,54 @@
 Myntra Reviews — Sentiment Analysis (NLP + ML)
 
-Overview:
-This project analyzes Myntra product reviews and classifies them as Positive, Neutral, or Negative using TF-IDF vectorization and multiple ML models.
-It also includes an interactive Streamlit app for real-time predictions and bulk CSV uploads.
+Purpose:
+Demonstrate how NLP + ML can classify e-commerce product reviews:
+- Convert text to vectors (**TF-IDF**).
+- Train & compare classifiers (**Naive Bayes, Logistic Regression, SVM, Random Forest**).
+- Serve real-time predictions via **Streamlit**.
 
-Features:
-✅ Text preprocessing & TF-IDF
-✅ Multiple model training (Naive Bayes, Logistic Regression, SVM, Random Forest)
-✅ Model comparison & evaluation metrics
-✅ Streamlit App for real-time and bulk predictions
-✅ Train/Test CSVs included for reproducibility
-
-Project Structure:
-myntra-sentiment-analysis/
-│
-├── app.py                  # Streamlit App
-├── model_training.ipynb    # Colab Notebook
-├── train.csv               # Training dataset
-├── test.csv                # Test dataset
-├── best_model.pkl          # Saved best model
-├── tfidf.pkl               # Saved TF-IDF vectorizer
-├── requirements.txt        # Dependencies
-└── README.md               # Documentation
-
-
-Tech Stack:
-Python (Pandas, NumPy)
-Scikit-learn (TF-IDF, ML classifiers, metrics)
-Streamlit (UI)
-Seaborn / Matplotlib / WordCloud (visualizations)
-Joblib (model persistence)
-
-Run Locally:
-git clone https://github.com/<your-username>/myntra-sentiment-analysis.git
-cd myntra-sentiment-analysis
+Outcomes:
+- Modeling: Multi-model benchmark with accuracy & reports.
+- App: Single review + CSV bulk prediction, downloadable results.
+- Reproducibility: `train.csv` / `test.csv`, saved artifacts (`best_model.pkl`, `tfidf.pkl`).
+  
+Quickstart (Colab / Local):
+```bash
 pip install -r requirements.txt
 streamlit run app.py
+myntra-sentiment-analysis/
+├─ app.py                  # Streamlit app (single + bulk prediction)
+├─ model_training.ipynb    # Notebook: prep, TF-IDF, models, save artifacts
+├─ train.csv               # Train split (Cleaned_Review, Sentiment)
+├─ test.csv                # Test split  (Cleaned_Review, Sentiment)
+├─ best_model.pkl          # Trained classifier (e.g., SVM)
+├─ tfidf.pkl               # TF-IDF vectorizer
+├─ requirements.txt
+└─ README.md
 
-Deploy on Streamlit Cloud:
-Push repo to GitHub (include app.py, model files, and requirements.txt)
-Go to Streamlit Cloud → New App
-Select repo + app.py → Deploy 🚀
-App will be live at:
-https://<your-app-name>-<your-username>.streamlit.app
+Data:
+Labels: Positive, Neutral, Negative
+Columns: review (raw) → Cleaned_Review (processed), Sentiment
+Run – Streamlit App
+Single review
+Open app → paste review → Predict Sentiment
+Bulk CSV
+Upload CSV with a review column
+Get table with Predicted_Sentiment
+Download annotated CSV
+Train / Re-Train (optional)
+Open model_training.ipynb and run all cells. Save artifacts:
 
-Example Workflow:
-Single Review → Paste a review → Predict sentiment instantly
-CSV Upload → Upload file with review column → Get predictions + downloadable results
-Model Performance → Confusion matrix & accuracy metrics
+import joblib
+joblib.dump(best_model, "best_model.pkl")
+joblib.dump(tfidf, "tfidf.pkl")
+
+Example (Model Comparison)
+Model               Accuracy
+----------------------------
+Naive Bayes         86.7%
+Logistic Regression 90.0%
+SVM                 92.5%
+Random Forest       88.3%
 
 Requirements:
 streamlit
@@ -59,11 +60,8 @@ seaborn
 wordcloud
 joblib
 
-Screenshots:
-(Add screenshots of your Streamlit app UI, accuracy chart, and confusion matrix here)
-
-Future Improvements:
-Add BERT / Transformer models for higher accuracy
-Add LIME/SHAP for explainability
-Deploy on Heroku / Render for alternatives to Streamlit Cloud
+Deploy (Streamlit Cloud):
+Push repo to GitHub (include app.py, requirements.txt, best_model.pkl, tfidf.pkl)
+Streamlit Cloud → New app → select repo → main file: app.py → Deploy
+Get your public URL.
 
